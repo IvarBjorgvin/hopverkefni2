@@ -1,0 +1,27 @@
+{
+  "name": "vef1-2024-h2",
+  "version": "1.0.0",
+  "description": "- [Fyrirlestur 11.3: Hópverkefni 2 (22:55)](https://youtu.be/oi4pSYgvX2M) - [Fyrirlestur 12.2: Hópverkefni 2 inngangur (1:13:51)](https://www.youtube.com/watch?v=NoAVU4wzceg)   - [GitHub repo með því sem unnið var í tíma](https://github.com/vefforritun/vef1-2024-h2-ur-fyrirlestri)",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "sass --watch src/scss:dist/css",
+    "lint:css": "stylelint 'src/scss/**/*.scss'",
+    "lint:fix": "stylelint 'src/scss/**/*.scss' --fix",
+    "lint:js": "eslint 'src/js/**/*.js'",
+    "lint:js:fix": "eslint 'src/js/**/*.js' --fix",
+    "start": "live-server dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "globals": "^15.12.0",
+    "sass": "^1.81.0",
+    "stylelint": "^16.10.0",
+    "stylelint-config-sass-guidelines": "^12.1.0",
+    "stylelint-config-standard": "^36.0.1"
+  }
+}

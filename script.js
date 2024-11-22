@@ -7,13 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             window.appData = data;
 
-            // Update page title and header
             document.querySelector('h1').textContent = data.title;
 
             const nav = document.querySelector('nav');
             nav.innerHTML = '';
 
-            // Add link to home
             const homeLink = document.createElement('a');
             homeLink.href = `${basePath}index.html`;
             homeLink.textContent = 'Forsíða';
@@ -26,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             nav.appendChild(homeLink);
 
-            // Add links for navigation (HTML, CSS, JavaScript)
             data.navigation.forEach(item => {
                 const link = document.createElement('a');
                 link.href = `${basePath}?section=${item.slug}`;
@@ -36,16 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     event.preventDefault();
                     const slug = item.slug;
                     history.pushState({ slug: slug }, '', `${basePath}?section=${slug}`);
-                    loadOverview(slug); // Load overview instead of lectures
+                    loadOverview(slug); 
                 });
 
                 nav.appendChild(link);
             });
 
-            // Set footer content
             document.querySelector('footer p').textContent = data.footer;
 
-            // Handle initial load based on query parameters
             const params = new URLSearchParams(window.location.search);
             const section = params.get('section');
             const lecture = params.get('lecture');
@@ -55,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 loadLecture(section, lecture);
             } else if (section) {
                 history.replaceState({ slug: section }, '', window.location.href);
-                loadOverview(section); // Load overview on section click
+                loadOverview(section); 
             } else {
                 document.querySelector('main').innerHTML = `<p>${data.description}</p>`;
                 document.title = data.title;
@@ -68,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (event.state.lecture) {
                 loadLecture(event.state.section, event.state.lecture);
             } else if (event.state.slug) {
-                loadOverview(event.state.slug); // Handle navigation back to overview
+                loadOverview(event.state.slug);
             }
         } else {
             document.querySelector('main').innerHTML = `<p>${window.appData.description}</p>`;
@@ -87,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const main = document.querySelector('main');
                 main.innerHTML = `<h2>${data.title}</h2><p>${data.text}</p>`;
 
-                // Create links for the content options
                 data.content.forEach(content => {
                     const section = document.createElement('section');
                     const h3 = document.createElement('h3');
@@ -104,9 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         if (content.type === 'lectures') {
                             history.pushState({ section: sectionSlug, content: content.slug }, '', link.href);
-                            loadSection(sectionSlug); // Load lectures
+                            loadSection(sectionSlug); 
                         }
-                        // Add similar handling for keywords, questions, etc., if needed.
                     });
 
                     section.appendChild(h3);
@@ -129,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const main = document.querySelector('main');
                 main.innerHTML = `<h2>${data.title}</h2>`;
 
-                // List lectures
                 data.lectures.forEach(lecture => {
                     const section = document.createElement('section');
                     const h3 = document.createElement('h3');
@@ -172,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const main = document.querySelector('main');
                 main.innerHTML = `<h2>${lecture.title}</h2>`;
 
-                // Render lecture content
                 lecture.content.forEach(item => {
                     const section = document.createElement('section');
 
